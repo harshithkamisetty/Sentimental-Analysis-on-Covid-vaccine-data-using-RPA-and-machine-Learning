@@ -1,0 +1,60 @@
+{
+  "name": "SearchTweet",
+  "description": "Twitter Api Search",
+  "main": "Main.xaml",
+  "dependencies": {
+    "python": "[3.11.0-a1]",
+    "UiPath.Excel.Activities": "[2.8.2-preview]",
+    "UiPath.Mail.Activities": "[1.8.2-preview]",
+    "UiPath.Python.Activities": "[1.4.1]",
+    "UiPath.System.Activities": "[20.3.0-preview]",
+    "UiPath.UIAutomation.Activities": "[21.8.0-preview]",
+    "UiPathTeam.Core.Activities": "[1.0.1]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "20.3.0.84",
+  "projectVersion": "1.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": false
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "modernBehavior": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "964c6ebb-ff56-4fd7-981c-4efae02f829f",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Legacy"
+}

@@ -1,0 +1,413 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SearchTweets" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ConsumerKey" Type="InArgument(x:String)" />
+    <x:Property Name="ConsumerSecret" Type="InArgument(x:String)" />
+    <x:Property Name="OutputDirectory" Type="InArgument(x:String)" />
+    <x:Property Name="SearchKeyword" Type="InArgument(x:String)" />
+    <x:Property Name="SearchLang" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>712.666666666667,1420.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="39">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Web</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPathTeam.Core.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="58">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPathTeam.Core.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="SearchTweets" sap:VirtualizedContainerService.HintSize="722.666666666667,1356" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="AccessToken" />
+      <Variable x:TypeArguments="x:String" Name="UrlParameter" />
+      <Variable x:TypeArguments="njl:JObject" Name="JsSearchResult" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DtSearchResult" />
+      <Variable x:TypeArguments="x:String" Name="OutputFileName" />
+      <Variable x:TypeArguments="x:String" Name="MaxTweetId" />
+      <Variable x:TypeArguments="x:Boolean" Name="IsLoopExit">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_1" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="st:StringBuilder" Default="[New StringBuilder()]" Name="StbTagText" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="Count_rows_excel" />
+      <Variable x:TypeArguments="x:Boolean" Name="loop_check" />
+      <Variable x:TypeArguments="x:Boolean" Default="True" Name="check" />
+      <Variable x:TypeArguments="x:String" Name="newcdbcheck" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Get access token" sap:VirtualizedContainerService.HintSize="680.666666666667,100" sap2010:WorkflowViewState.IdRef="Sequence_52">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim url As String = &quot;https://api.twitter.com/oauth2/token&quot;&#xA;Dim enc As System.Text.Encoding = System.Text.Encoding.UTF8&#xA;Dim data As Byte() = enc.GetBytes(&quot;grant_type=client_credentials&quot;)&#xA;Dim auth As Byte() = enc.UTF8.GetBytes(consumerKey &amp; &quot;:&quot; &amp; consumerSecret)&#xA;Dim req As WebRequest = Net.WebRequest.Create(url)&#xA;&#xA;req.Method = &quot;POST&quot;&#xA;req.Headers(HttpRequestHeader.Authorization) = &quot;Basic &quot; &amp; Convert.ToBase64String(auth)&#xA;req.ContentType = &quot;application/x-www-form-urlencoded&quot;&#xA;req.ContentLength = data.Length&#xA;Using st As Stream = req.GetRequestStream()&#xA;&#x9;st.Write(data, 0, data.Length)&#xA;&#x9;st.Close()&#xA;End Using&#xA;&#xA;Try&#xA;&#x9;Using res As WebResponse = req.GetResponse()&#xA;&#x9;&#x9;Using st As Stream = res.GetResponseStream()&#xA;&#x9;&#x9;&#x9;Using sr As StreamReader = New StreamReader(st, enc)&#xA;&#x9;&#x9;&#x9;&#x9;Dim jobj As JObject = Jobject.Parse(sr.ReadToEnd())&#xA;&#x9;&#x9;&#x9;&#x9;accessToken =jobj(&quot;access_token&quot;).ToString&#xA;&#x9;&#x9;&#x9;End Using&#xA;&#x9;&#x9;End Using&#xA;&#x9;End Using&#xA;Catch ex As WebException&#xA;&#x9;If ex.Response IsNot Nothing AndAlso ex.Response.ContentLength &lt;&gt; 0 Then&#xA;&#x9;&#x9;Using st As Stream = ex.Response.GetResponseStream()&#xA;&#x9;&#x9;&#x9;Using sr As StreamReader = New StreamReader(st)&#xA;&#x9;&#x9;&#x9;&#x9;Throw new Exception(sr.ReadToEnd())&#xA;&#x9;&#x9;&#x9;End Using&#xA;&#x9;&#x9;End Using&#xA;&#x9;End If&#xA;End Try" DisplayName="Invoke Code - /api.twitter.com/oauth2/token" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_23">
+        <ui:InvokeCode.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="consumerKey">[ConsumerKey]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="consumerSecret">[ConsumerSecret]</InArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="accessToken">[AccessToken]</OutArgument>
+        </ui:InvokeCode.Arguments>
+      </ui:InvokeCode>
+      <WriteLine DisplayName="Debug - access token" sap:VirtualizedContainerService.HintSize="334,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_28" Text="[&quot;[AccessToken] &quot; &amp; AccessToken]" />
+    </Sequence>
+    <Assign DisplayName="Assign - output file name" sap:VirtualizedContainerService.HintSize="680.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_7">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[OutputFileName]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[String.Format("TweetSearch_{0}", SearchKeyword.Replace(":", "-"))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Sequence DisplayName="Sequence - create datatable" sap:VirtualizedContainerService.HintSize="840,1046.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_48">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If Condition="[Io.Directory.Exists(IO.path.GetFullPath(OutputDirectory)) = false]" DisplayName="If - there is no output directory" sap:VirtualizedContainerService.HintSize="798,265.333333333333" sap2010:WorkflowViewState.IdRef="If_13">
+        <If.Then>
+          <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder - output directory" sap:VirtualizedContainerService.HintSize="334,80.6666666666667" sap2010:WorkflowViewState.IdRef="CreateDirectory_4" Path="[IO.path.GetFullPath(OutputDirectory)]" />
+        </If.Then>
+      </If>
+      <If Condition="[Io.file.Exists(path.Combine(OutputDirectory, OutputFileName &amp; &quot;.xlsx&quot;))]" DisplayName="If - there is an output file" sap:VirtualizedContainerService.HintSize="798,649.333333333333" sap2010:WorkflowViewState.IdRef="If_14">
+        <If.Then>
+          <Sequence DisplayName="Sequence - there is an output file" sap:VirtualizedContainerService.HintSize="376,485.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_46">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ReadRange AddHeaders="True" DataTable="[DtSearchResult]" DisplayName="Read Range - output file" sap:VirtualizedContainerService.HintSize="334,86.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_6" SheetName="sheet1" WorkbookPath="[path.Combine(OutputDirectory, OutputFileName &amp; &quot;.xlsx&quot;)]">
+              <ui:ReadRange.Range>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </ui:ReadRange.Range>
+            </ui:ReadRange>
+            <Assign DisplayName="Assign - min tweet id in file" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_36">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[MaxTweetId]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[DtSearchResult.AsEnumerable().Min(Function(row) row("TweetId").ToString)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Assign - count no of rows" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_37">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[Count_rows_excel]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[DtSearchResult.Rows.Count]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <WriteLine DisplayName="Debug - access token" sap:VirtualizedContainerService.HintSize="334,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_26" Text="[Count_rows_excel.ToString]" />
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Sequence - there is no output file" sap:VirtualizedContainerService.HintSize="376,460" sap2010:WorkflowViewState.IdRef="Sequence_47">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="dtResult = New DataTable(&quot;SearchResult&quot;)&#xA;&#xA;dtResult.Columns.Add(&quot;CreatedAt&quot;, Type.GetType(&quot;System.String&quot;))&#xA;dtResult.Columns.Add(&quot;UserName&quot;, Type.GetType(&quot;System.String&quot;))&#xA;dtResult.Columns.Add(&quot;UserId&quot;, Type.GetType(&quot;System.String&quot;))&#xA;dtResult.Columns.Add(&quot;UserIcon&quot;, Type.GetType(&quot;System.String&quot;))&#xA;dtResult.Columns.Add(&quot;TweetText&quot;, Type.GetType(&quot;System.String&quot;))&#xA;dtResult.Columns.Add(&quot;TweetFrom&quot;, Type.GetType(&quot;System.String&quot;))&#xA;dtResult.Columns.Add(&quot;TweetId&quot;, Type.GetType(&quot;System.String&quot;))&#xA;dtResult.Columns.Add(&quot;TweetUrl&quot;, Type.GetType(&quot;System.String&quot;))&#xA;dtResult.Columns.Add(&quot;Location&quot;, Type.GetType(&quot;System.String&quot;))&#xA;&#xA;" DisplayName="Invoke Code - build datatable" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_21">
+              <ui:InvokeCode.Arguments>
+                <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtResult">[DtSearchResult]</OutArgument>
+              </ui:InvokeCode.Arguments>
+            </ui:InvokeCode>
+            <Assign DisplayName="Assign - url query parameter" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_44">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[UrlParameter]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Format("q={0}&amp;lang={1}&amp;count=100&amp;result_type=recent&amp;since_id={2}",  httputility.UrlEncode(SearchKeyword), SearchLang, MaxTweetId)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_45">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[newcdbcheck]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">yes</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="680.666666666667,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_24" Text="Hello_check" />
+    <While sap:VirtualizedContainerService.HintSize="680.666666666667,779.333333333333" sap2010:WorkflowViewState.IdRef="While_3">
+      <While.Condition>
+        <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="check" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_4" />
+      </While.Condition>
+      <Sequence sap:VirtualizedContainerService.HintSize="634,615.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_31">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="592,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_17" Text="[Count_rows_excel.ToString]" />
+        <If Condition="[Count_rows_excel&gt;=3599]" sap:VirtualizedContainerService.HintSize="592,420.666666666667" sap2010:WorkflowViewState.IdRef="If_8">
+          <If.Then>
+            <Sequence sap:VirtualizedContainerService.HintSize="304,256.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_44">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="262,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_23" Text="hello" />
+              <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_40">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Boolean">[check]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence sap:VirtualizedContainerService.HintSize="242,161.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_50">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="262,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_18" Text="[Count_rows_excel.ToString]" />
+                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_28">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[IsLoopExit]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,779.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Sequence - retrieve tweets" sap:VirtualizedContainerService.HintSize="334,100" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Sequence DisplayName="Sequence - call api and set data" sap:VirtualizedContainerService.HintSize="762.666666666667,1551.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[newcdbcheck &lt;&gt; &quot;yes&quot;]" sap:VirtualizedContainerService.HintSize="720.666666666667,246.666666666667" sap2010:WorkflowViewState.IdRef="If_15">
+                        <If.Then>
+                          <Assign DisplayName="Assign - url query parameter" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_46">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[UrlParameter]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Format("q={0}&amp;lang={1}&amp;count=100&amp;result_type=recent&amp;max_id={2}",  httputility.UrlEncode(SearchKeyword), SearchLang, MaxTweetId)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </If.Then>
+                      </If>
+                      <WriteLine DisplayName="Debug - search parameter" sap:VirtualizedContainerService.HintSize="720.666666666667,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_20" Text="[&quot;[SearchParameter] &quot; &amp; UrlParameter]" />
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim url As String = &quot;https://api.twitter.com/1.1/search/tweets.json?&quot; &amp; urlParameter&#xA;Dim enc As System.Text.Encoding = System.Text.Encoding.UTF8&#xA;Dim req As WebRequest = Net.WebRequest.Create(url)&#xA;req.Method = &quot;GET&quot;&#xA;req.Headers(HttpRequestHeader.Authorization) = &quot;Bearer &quot; &amp; accessToken&#xA;&#xA;Try&#xA;&#x9;Using res As WebResponse = req.GetResponse()&#xA;&#x9;&#x9;Using st As Stream = res.GetResponseStream()&#xA;&#x9;&#x9;&#x9;Using sr As StreamReader = New StreamReader(st, enc)&#xA;&#x9;&#x9;&#x9;&#x9;jobjSearchResult = Jobject.Parse(sr.ReadToEnd())&#xA;&#x9;&#x9;&#x9;End Using&#xA;&#x9;&#x9;End Using&#xA;&#x9;End Using&#xA;Catch ex As WebException&#xA;&#x9;If ex.Response IsNot Nothing AndAlso ex.Response.ContentLength &lt;&gt; 0 Then&#xA;&#x9;&#x9;Using st As Stream = ex.Response.GetResponseStream()&#xA;&#x9;&#x9;&#x9;Using sr As StreamReader = New StreamReader(st)&#xA;&#x9;&#x9;&#x9;&#x9;Throw New Exception(sr.ReadToEnd())&#xA;&#x9;&#x9;&#x9;End Using&#xA;&#x9;&#x9;End Using&#xA;&#x9;End If&#xA;End Try" DisplayName="Invoke Code - /1.1/search/tweets.json" sap:VirtualizedContainerService.HintSize="720.666666666667,164" sap2010:WorkflowViewState.IdRef="InvokeCode_18">
+                        <ui:InvokeCode.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="accessToken">[AccessToken]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="urlParameter">[UrlParameter]</InArgument>
+                          <OutArgument x:TypeArguments="njl:JObject" x:Key="jobjSearchResult">[JsSearchResult]</OutArgument>
+                        </ui:InvokeCode.Arguments>
+                      </ui:InvokeCode>
+                      <WriteLine DisplayName="Debug - search result count" sap:VirtualizedContainerService.HintSize="720.666666666667,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_21" Text="[&quot;[SearchResult.Count] &quot; &amp; CType(JsSearchResult(&quot;statuses&quot;), JArray).Count]" />
+                      <If Condition="[CType(JsSearchResult(&quot;statuses&quot;), JArray).Count &gt; 0]" DisplayName="If - there are remaining search results" sap:VirtualizedContainerService.HintSize="720.666666666667,661.333333333333" sap2010:WorkflowViewState.IdRef="If_12">
+                        <If.Then>
+                          <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="ForEach - set search result to datatable" sap:VirtualizedContainerService.HintSize="412.666666666667,497.333333333333" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[JsSearchResult(&quot;statuses&quot;)]">
+                            <ui:ForEach.Body>
+                              <ActivityAction x:TypeArguments="njl:JToken">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="njl:JToken" Name="jrow" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Sequence - search result row " sap:VirtualizedContainerService.HintSize="376,358.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <WriteLine DisplayName="Debug - TweetID" sap:VirtualizedContainerService.HintSize="334,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_22" Text="[&quot;[SearchResult.TweetId] &quot; &amp; jrow(&quot;id_str&quot;).ToString]" />
+                                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim drow As DataRow = DtSearchResult.NewRow()&#xA;&#xA;Dim workDtime As DateTime = DateTime.ParseExact(jrow(&quot;created_at&quot;).ToString,&#xA; &quot;ddd MMM d HH':'mm':'ss zzz yyyy&quot;, &#xA; DateTimeFormatInfo.InvariantInfo, DateTimeStyles.None)&#xA;&#xA;Dim workUrl As String = String.Format(&quot;https://twitter.com/{0}/status/{1}&quot;, &#xA;  jrow(&quot;user&quot;)(&quot;screen_name&quot;).ToString, jrow(&quot;id_str&quot;).ToString)&#xA;&#xA;drow.Item(&quot;TweetId&quot;) = jrow(&quot;id_str&quot;).ToString&#xA;drow.Item(&quot;TweetFrom&quot;) = jrow(&quot;source&quot;).ToString&#xA;drow.Item(&quot;TweetText&quot;) = jrow(&quot;text&quot;).ToString&#xA;drow.Item(&quot;CreatedAt&quot;) = workDtime.ToString(&quot;yyyy/MM/dd HH:mm:ss&quot;)&#xA;drow.Item(&quot;TweetUrl&quot;) = workUrl&#xA;drow.Item(&quot;UserId&quot;) = jrow(&quot;user&quot;)(&quot;screen_name&quot;).ToString&#xA;drow.Item(&quot;UserName&quot;) = jrow(&quot;user&quot;)(&quot;name&quot;).ToString&#xA;drow.Item(&quot;UserIcon&quot;) = jrow(&quot;user&quot;)(&quot;profile_image_url&quot;).ToString&#xA;drow.Item(&quot;Location&quot;)=jrow(&quot;user&quot;)(&quot;location&quot;).ToString&#xA;&#xA;DtSearchResult.Rows.Add(drow)" DisplayName="Invoke Code - add data to datatable" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_19">
+                                    <ui:InvokeCode.Arguments>
+                                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="dtSearchResult">[DtSearchResult]</InOutArgument>
+                                      <InArgument x:TypeArguments="njl:JToken" x:Key="jrow">[jrow]</InArgument>
+                                    </ui:InvokeCode.Arguments>
+                                  </ui:InvokeCode>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ForEach.Body>
+                          </ui:ForEach>
+                        </If.Then>
+                        <If.Else>
+                          <Assign DisplayName="Assign - loopexit" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_30">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[IsLoopExit]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </If.Else>
+                      </If>
+                      <Assign sap:VirtualizedContainerService.HintSize="720.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_47">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[newcdbcheck]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">no</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </Sequence>
+                  <Assign DisplayName="Assign - sort datatable" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_31">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="sd:DataTable">[DtSearchResult]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="sd:DataTable">[New DataView(DtSearchResult, "", "TweetId DESC", DataViewRowState.CurrentRows).ToTable]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:WriteRange AddHeaders="True" DataTable="[DtSearchResult]" DisplayName="Write Range - output datatable to excel" sap:VirtualizedContainerService.HintSize="334,114.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="sheet1" WorkbookPath="[path.Combine(OutputDirectory, OutputFileName &amp; &quot;.xlsx&quot;)]">
+                    <ui:WriteRange.StartingCell>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </ui:WriteRange.StartingCell>
+                  </ui:WriteRange>
+                  <ui:ReadRange AddHeaders="True" DataTable="[DtSearchResult]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,86.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_5" SheetName="sheet1" WorkbookPath="[path.Combine(OutputDirectory, OutputFileName &amp; &quot;.xlsx&quot;)]">
+                    <ui:ReadRange.Range>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </ui:ReadRange.Range>
+                  </ui:ReadRange>
+                  <Assign DisplayName="number of rows count" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_32">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[Count_rows_excel]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[DtSearchResult.Rows.Count]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign - min tweet id in file" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_39">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[MaxTweetId]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[DtSearchResult.AsEnumerable().Min(Function(row) row("TweetId").ToString)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </Sequence>
+            </Sequence>
+          </If.Else>
+        </If>
+      </Sequence>
+    </While>
+  </Sequence>
+</Activity>
